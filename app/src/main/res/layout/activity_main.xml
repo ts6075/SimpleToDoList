@@ -20,7 +20,7 @@
             android:background="@color/teal_700">
 
             <TextView
-                android:id="@+id/待辦"
+                android:id="@+id/topText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -34,9 +34,25 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/topBar"
-            android:layout_marginTop="0dp">
+            android:layout_below="@id/topBar">
 
+            <ListView
+                android:id="@+id/taskListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            </ListView>
+
+            <ImageView
+                android:id="@+id/addTask_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:onClick="goToAddTaskView"
+                android:src="@drawable/plus" />
         </RelativeLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
