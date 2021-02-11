@@ -1,4 +1,4 @@
-package com.goodtodo.simpletodolist;
+package com.goodtodo.simpletodolist.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,8 +6,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import com.goodtodo.simpletodolist.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ListView taskListView = findViewById(R.id.taskListView);
+        ListAdapter taskAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"1", "2"});
+        taskListView.setAdapter(taskAdapter);
     }
 
     public void goToAddTaskView(View v) {

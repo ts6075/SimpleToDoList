@@ -1,4 +1,4 @@
-package com.goodtodo.simpletodolist;
+package com.goodtodo.simpletodolist.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.goodtodo.simpletodolist.R;
 
 public class AddTaskActivity extends AppCompatActivity {
 
