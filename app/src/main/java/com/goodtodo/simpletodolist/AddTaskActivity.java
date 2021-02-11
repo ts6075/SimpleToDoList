@@ -1,5 +1,6 @@
 package com.goodtodo.simpletodolist;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,13 @@ public class AddTaskActivity extends AppCompatActivity {
 
     }
 
-    public void addTask(View v){
+    public void addTask(View v) {
 
+    }
+
+    public void closeAddTaskView(View v) {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
     }
 }
