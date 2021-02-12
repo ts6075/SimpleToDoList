@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,10 +12,13 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.goodtodo.simpletodolist.R;
+import com.goodtodo.simpletodolist.model.TaskModel;
+import com.goodtodo.simpletodolist.model.TaskService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,8 +28,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView taskListView = findViewById(R.id.taskListView);
-        ListAdapter taskAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"1", "2"});
+        ListAdapter taskAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getTaskList());
         taskListView.setAdapter(taskAdapter);
+    }
+
+    public List<TaskModel> getTaskList() {
+        SQLiteDatabase db = openOrCreateDatabase("todolist", MODE_PRIVATE, null);
+        TaskService service = new TaskService(db);
+        service.add();
+        List<TaskModel> model = service.getList();
+        return model;
     }
 
     public void goToAddTaskView(View v) {
