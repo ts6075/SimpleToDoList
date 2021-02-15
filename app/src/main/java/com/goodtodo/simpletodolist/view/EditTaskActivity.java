@@ -24,11 +24,13 @@ public class EditTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
-        int taskId = getIntent().getIntExtra("taskId", 0);
-        String taskTitle = getIntent().getStringExtra("taskTitle");
-        String taskContent = getIntent().getStringExtra("taskContent");
+        this.taskId = getIntent().getIntExtra("taskId", 0);
 
-        this.taskId = taskId;
+        TaskService service = new TaskService(EditTaskActivity.this);
+        TaskModel model = service.getOne(this.taskId);
+        String taskTitle = model.getTaskTitle();
+        String taskContent = model.getTaskContent();
+
         ((TextView)findViewById(R.id.taskTitle)).setText(taskTitle);
         ((TextView)findViewById(R.id.taskContent)).setText(taskContent);
     }
@@ -40,8 +42,8 @@ public class EditTaskActivity extends AppCompatActivity {
     public void editTask(View v) {
         String taskTitle = ((TextView)findViewById(R.id.taskTitle)).getText().toString();
         String taskContent = ((TextView)findViewById(R.id.taskContent)).getText().toString();
-        TaskModel model = new TaskModel(taskId, taskTitle, taskContent);
         TaskService service = new TaskService(EditTaskActivity.this);
+        TaskModel model = new TaskModel(taskId, taskTitle, taskContent);
         service.update(model);
 
         Toast.makeText(this, "輸入的標題：" + taskTitle + "\n輸入的內容：" + taskContent, Toast.LENGTH_SHORT).show();

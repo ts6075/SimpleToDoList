@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intentMain = new Intent(MainActivity.this, EditTaskActivity.class);
                 intentMain.putExtra("taskId", model.getTaskId());
-                intentMain.putExtra("taskTitle", model.getTaskTitle());
-                intentMain.putExtra("taskContent", model.getTaskContent());
                 startActivityForResult(intentMain, 1);
             }
         });
