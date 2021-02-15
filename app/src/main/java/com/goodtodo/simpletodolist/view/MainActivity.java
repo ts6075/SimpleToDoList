@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<TaskModel> getTaskList() {
-        SQLiteDatabase db = openOrCreateDatabase("todolist", MODE_PRIVATE, null);
-        TaskService service = new TaskService(db);
-        service.add();
+        TaskService service = new TaskService(this);
         List<TaskModel> model = service.getList();
         return model;
     }
@@ -50,24 +48,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                String title = data.getStringExtra("title");
-                String txt = data.getStringExtra("txt");
-                String date = data.getStringExtra("date");
-                String delete = data.getStringExtra("delete");
-                String category = data.getStringExtra("categorie");
-                SimpleDateFormat newDateFormat = new SimpleDateFormat("EE d MMM yyyy k:m");
-                Date d = null;
-                try {
-                    d = newDateFormat.parse(date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if (data.getStringExtra("edit").equals("true")) {
-                } else {
-                }
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-                //here goes nothing
             }
         }
         if (requestCode == 2) {

@@ -1,5 +1,6 @@
 package com.goodtodo.simpletodolist.model;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -13,22 +14,40 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * 待辦事項服務
+ */
 public class TaskService {
     private final SQLiteDatabase db;
 
-    public TaskService(SQLiteDatabase db) {
-        this.db = db;
+    /**
+     * 建構子
+     * @param context
+     */
+    public TaskService(Context context) {
+        this.db = context.openOrCreateDatabase("todolist", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS Tasks(Id INTEGER PRIMARY KEY AUTOINCREMENT , TaskTitle TEXT, TaskContent TEXT);");
     }
 
-    public void add() {
-        db.execSQL("INSERT INTO Tasks (TaskTitle, TaskContent) VALUES('test', 'test');");
+    /**
+     * 新增
+     * @param model
+     */
+    public void addOne(TaskModel model) {
+        db.execSQL("INSERT INTO Tasks (TaskTitle, TaskContent) VALUES('" + model.getTaskTitle() + "', '" + model.getTaskContent() + "');");
     }
 
+    /**
+     * 取得單一資料
+     */
     public void getOne() {
 
     }
 
+    /**
+     * 取得列表
+     * @return
+     */
     public List<TaskModel> getList() {
         List<TaskModel> model = new ArrayList<>();
 
@@ -42,16 +61,19 @@ public class TaskService {
             model.add(data);
             resultSet.moveToNext();
         }
-
-        model.add(new TaskModel("test", "test"));
-        Log.d("tS","test");
         return model;
     }
 
+    /**
+     * 更新
+     */
     public void update() {
 
     }
 
+    /**
+     * 刪除
+     */
     public void delete() {
 
     }
