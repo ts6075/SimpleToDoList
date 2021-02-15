@@ -5,6 +5,10 @@ package com.goodtodo.simpletodolist.model;
  */
 public class TaskModel {
     /**
+     * 識別碼
+     */
+    private int taskId;
+    /**
      * 標題
      */
     private String taskTitle;
@@ -23,6 +27,35 @@ public class TaskModel {
         this.taskTitle = taskTitle;
         this.taskContent = taskContent;
     }
+
+    /**
+     * 建構子
+     *
+     * @param taskId   識別碼
+     * @param taskTitle   標題
+     * @param taskContent 內容
+     */
+    public TaskModel(int taskId, String taskTitle, String taskContent) {
+        this.taskId = taskId;
+        this.taskTitle = taskTitle;
+        this.taskContent = taskContent;
+    }
+
+    /**
+     * 設定識別碼
+     *
+     * @param taskId 識別碼
+     */
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+
+    /**
+     * 取得識別碼
+     *
+     * @return 識別碼
+     */
+    public int getTaskId() { return this.taskId; }
 
     /**
      * 設定標題

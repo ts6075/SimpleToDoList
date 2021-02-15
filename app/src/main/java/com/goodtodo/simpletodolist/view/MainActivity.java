@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         return model;
     }
 
+    /**
+     * 開啟新增待辦事項頁面
+     * @param v
+     */
     public void goToAddTaskView(View v) {
         Intent intentMain = new Intent(MainActivity.this, AddTaskActivity.class);
         startActivityForResult(intentMain, 1);

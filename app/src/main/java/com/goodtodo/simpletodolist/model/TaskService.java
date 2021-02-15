@@ -40,8 +40,15 @@ public class TaskService {
     /**
      * 取得單一資料
      */
-    public void getOne() {
-
+    public TaskModel getOne(TaskModel model) {
+        Cursor resultSet = db.rawQuery("SELECT TOP 1 * FROM Tasks WHERE Id = " + model.getTaskId(), null);
+        resultSet.moveToFirst();
+        TaskModel data = new TaskModel(
+                resultSet.getInt(resultSet.getColumnIndex("Id")),
+                resultSet.getString(resultSet.getColumnIndex("TaskTitle")),
+                resultSet.getString(resultSet.getColumnIndex("TaskContent"))
+        );
+        return data;
     }
 
     /**
