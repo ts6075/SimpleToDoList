@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.goodtodo.simpletodolist.R;
 import com.goodtodo.simpletodolist.model.TaskModel;
@@ -30,10 +32,23 @@ public class MainActivity extends AppCompatActivity {
         ListView taskListView = findViewById(R.id.taskListView);
         ListAdapter taskAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getTaskList());
         taskListView.setAdapter(taskAdapter);
+
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                TaskModel model = (TaskModel) taskListView.getAdapter().getItem(position);
+                String taskTitle = model.getTaskTitle();
+                String taskContent = model.getTaskContent();
+                Toast.makeText(MainActivity.this, taskTitle + taskContent, Toast.LENGTH_SHORT).show();
+
+                Intent intentMain = new Intent(MainActivity.this, EditTaskActivity.class);
+                startActivityForResult(intentMain, 1);
+            }
+        });
     }
 
     public List<TaskModel> getTaskList() {
-        TaskService service = new TaskService(this);
+        TaskService service = new TaskService(MainActivity.this);
         List<TaskModel> model = service.getList();
         return model;
     }

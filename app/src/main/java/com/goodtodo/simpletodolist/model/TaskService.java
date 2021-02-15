@@ -73,8 +73,9 @@ public class TaskService {
 
     /**
      * 更新
+     * @param model
      */
-    public void update() {
+    public void update(TaskModel model) {
 
     }
 
