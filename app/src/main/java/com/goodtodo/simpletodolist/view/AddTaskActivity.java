@@ -29,12 +29,13 @@ public class AddTaskActivity extends AppCompatActivity {
     public void addTask(View v) {
         String taskTitle = ((TextView)findViewById(R.id.taskTitle)).getText().toString();
         String taskContent = ((TextView)findViewById(R.id.taskContent)).getText().toString();
-        TaskModel model = new TaskModel(taskTitle, taskContent);
 
         TaskService service = new TaskService(AddTaskActivity.this);
+        TaskModel model = new TaskModel(taskTitle, taskContent);
         service.addOne(model);
 
         Toast.makeText(this, "輸入的標題：" + taskTitle + "\n輸入的內容：" + taskContent, Toast.LENGTH_SHORT).show();
+        setResult(Activity.RESULT_OK);
         finish();
     }
 

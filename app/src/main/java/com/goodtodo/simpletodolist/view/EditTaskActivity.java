@@ -47,6 +47,7 @@ public class EditTaskActivity extends AppCompatActivity {
         service.update(model);
 
         Toast.makeText(this, "輸入的標題：" + taskTitle + "\n輸入的內容：" + taskContent, Toast.LENGTH_SHORT).show();
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
