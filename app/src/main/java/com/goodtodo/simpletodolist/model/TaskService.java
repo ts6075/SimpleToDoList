@@ -62,6 +62,7 @@ public class TaskService {
         resultSet.moveToFirst();
         for (int i = 0; i < resultSet.getCount(); i++) {
             TaskModel data = new TaskModel(
+                    resultSet.getInt(resultSet.getColumnIndex("Id")),
                     resultSet.getString(resultSet.getColumnIndex("TaskTitle")),
                     resultSet.getString(resultSet.getColumnIndex("TaskContent"))
             );
@@ -76,7 +77,10 @@ public class TaskService {
      * @param model
      */
     public void update(TaskModel model) {
-
+        db.execSQL("UPDATE Tasks SET \n" +
+                "TaskTitle = '" + model.getTaskTitle() + "', \n" +
+                "TaskContent = '" + model.getTaskContent() + "' \n" +
+                "WHERE Id = " + model.getTaskId() + ";");
     }
 
     /**

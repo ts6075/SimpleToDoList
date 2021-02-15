@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:onClick="editTask"
-            android:text="新增"
+            android:text="儲存"
             android:textColor="#FFFFFF"
             android:textSize="20dp" />
     </RelativeLayout>

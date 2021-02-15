@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, taskTitle + taskContent, Toast.LENGTH_SHORT).show();
 
                 Intent intentMain = new Intent(MainActivity.this, EditTaskActivity.class);
+                intentMain.putExtra("taskId", model.getTaskId());
+                intentMain.putExtra("taskTitle", model.getTaskTitle());
+                intentMain.putExtra("taskContent", model.getTaskContent());
                 startActivityForResult(intentMain, 1);
             }
         });

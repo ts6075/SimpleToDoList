@@ -14,11 +14,23 @@ import com.goodtodo.simpletodolist.model.TaskModel;
 import com.goodtodo.simpletodolist.model.TaskService;
 
 public class EditTaskActivity extends AppCompatActivity {
+    /**
+     * 識別碼
+     */
+    private int taskId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
+
+        int taskId = getIntent().getIntExtra("taskId", 0);
+        String taskTitle = getIntent().getStringExtra("taskTitle");
+        String taskContent = getIntent().getStringExtra("taskContent");
+
+        this.taskId = taskId;
+        ((TextView)findViewById(R.id.taskTitle)).setText(taskTitle);
+        ((TextView)findViewById(R.id.taskContent)).setText(taskContent);
     }
 
     /**
@@ -28,8 +40,7 @@ public class EditTaskActivity extends AppCompatActivity {
     public void editTask(View v) {
         String taskTitle = ((TextView)findViewById(R.id.taskTitle)).getText().toString();
         String taskContent = ((TextView)findViewById(R.id.taskContent)).getText().toString();
-        TaskModel model = new TaskModel(taskTitle, taskContent);
-
+        TaskModel model = new TaskModel(taskId, taskTitle, taskContent);
         TaskService service = new TaskService(EditTaskActivity.this);
         service.update(model);
 
